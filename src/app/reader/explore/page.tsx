@@ -1,85 +1,104 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
+import Header from "@/app/header/page";
+import Footer from "@/app/footer/page"
 
-interface ExploreItem {
-  title: string;
-  subtitle: string;
-  img: string;
-  className: string;
-  href: string;
-}
+const categories = ["All", "Mystery", "Fantasy", "Thriller"];
 
-const exploreItems: ExploreItem[] = [
-  {
-    title: "explore",
-    subtitle: "books",
-    img: "/books_snoop.jpg",
-    className: "col-span-1 row-span-1",
-    href: "/explore-books",
-  },
-  {
-    title: "join",
-    subtitle: "challenges",
-    img: "/challenges_snoop.jpg",
-    className: "col-span-2 row-span-1",
-    href: "/join-challenges",
-  },
-  {
-    title: "discover",
-    subtitle: "community",
-    img: "/discover-community.png",
-    className: "col-span-2 row-span-1",
-    href: "/discover-community",
-  },
-  {
-    title: "earn",
-    subtitle: "xp",
-    img: "/rewards_snoop.jpg",
-    className: "col-span-1 row-span-1",
-    href: "/earn-xp",
-  },
-];
+const books = Array(9).fill({
+  title: "The Midnight Library",
+  author: "Matt Haig",
+  genre: "Fiction",
+  img: "/midnight_library.jpg",
+});
 
-export default function ExplorePage() {
+export default function ExploreBooks() {
+  const [activeCategory, setActiveCategory] = useState("All");
+
   return (
-    <div className="w-full min-h-screen bg-black flex flex-col items-center py-12 px-4">
-      <h1 className="text-white text-3xl font-light mb-10">
-        how <span className="text-yellow-300 font-semibold">levelupReads</span> works
-      </h1>
+    <main className="min-h-screen bg-white font-sans">
 
-      {/* GRID WITH SPANS */}
-      <div className="grid grid-cols-3 gap-6 w-full max-w-4xl auto-rows-[220px]">
-        {exploreItems.map((item, index) => (
-          <Link
-            key={index}
-            href={item.href}
-            className={`relative rounded-3xl overflow-hidden group cursor-pointer transform transition-all duration-300
-              hover:scale-[1.03] hover:shadow-2xl active:scale-[0.98] ${item.className}`}
+      <Header />
+
+      {/* TITLE + SNOOPY */}
+      <section className="px-10 py-10 flex justify-between items-center">
+        <h1 className="text-3xl font-mono">Explore Books</h1>
+
+        <Image
+          src="/snoopy_books.png"
+          alt="snoopy reading"
+          width={160}
+          height={160}
+          className="object-contain"
+        />
+      </section>
+
+      {/* SEARCH BAR */}
+      <div className="px-10 w-full max-w-3xl">
+        <div className="flex items-center gap-3 border px-4 py-2 rounded-full w-full">
+          <span className="text-gray-400">🔍</span>
+          <input
+            type="text"
+            placeholder="Search for books, authors, genres"
+            className="w-full outline-none text-sm"
+          />
+        </div>
+      </div>
+
+      {/* CATEGORY FILTER */}
+      <div className="flex gap-4 px-10 mt-6 flex-wrap">
+        {categories.map((c, i) => (
+          <button
+            key={i}
+            onClick={() => setActiveCategory(c)}
+            className={`px-5 py-1.5 rounded-full border text-sm transition
+              ${
+                activeCategory === c
+                  ? "bg-black text-white"
+                  : "bg-white text-black hover:bg-gray-100"
+              }
+            `}
           >
-            <Image
-              src={item.img}
-              alt={item.subtitle}
-              fill
-              className="object-cover opacity-90 transition duration-300 group-hover:opacity-100 group-hover:brightness-110"
-            />
-
-            {/* Overlay text */}
-            <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none">
-              <p className="text-white text-3xl font-semibold drop-shadow-md">
-                {item.title}
-              </p>
-              <p className="text-white text-2xl drop-shadow-md">
-                {item.subtitle}
-              </p>
-            </div>
-
-            {/* Tint */}
-            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition duration-300" />
-          </Link>
+            {c}
+          </button>
         ))}
       </div>
-    </div>
+
+      {/* BOOK GRID */}
+      <section className="px-10 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+
+        {books.map((book, index) => (
+          <div
+            key={index}
+            className="border rounded-xl p-4 flex flex-col items-center shadow-sm hover:shadow-lg transition"
+          >
+            <Image
+              src={book.img}
+              alt={book.title}
+              width={150}
+              height={200}
+              className="rounded-lg"
+            />
+
+            <h3 className="mt-4 font-medium text-lg text-center">
+              {book.title}
+            </h3>
+            <p className="text-gray-500 text-sm">{book.author}</p>
+            <p className="text-gray-500 text-sm">{book.genre}</p>
+
+            <button className="mt-4 px-6 py-2 bg-black text-white rounded-full text-sm hover:opacity-80">
+              Read more →
+            </button>
+          </div>
+        ))}
+
+      </section>
+
+      
+      <Footer />
+
+    </main>
   );
 }
