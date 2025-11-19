@@ -11,6 +11,24 @@ export default function CuratorDashboard() {
 
       <Header />
 
+      {/* HEADER */}
+      <section className="px-16 py-10 flex justify-between items-start">
+        <div>
+          <h1 className="text-4xl font-mono mb-2">Curator Dashboard</h1>
+          <p className="text-gray-600 text-lg">
+            Welcome back, Curator! Your knowledge guides the community.
+          </p>
+        </div>
+
+        <Image
+          src="/snoopy.png"
+          alt="Snoopy"
+          width={180}
+          height={180}
+          className="object-contain"
+        />
+      </section>
+
       {/* QUICK STATS */}
       <section className="px-16 mt-4">
         <h2 className="text-3xl font-mono mb-6">Quick Stats!</h2>

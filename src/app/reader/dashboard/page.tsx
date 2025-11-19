@@ -10,6 +10,23 @@ export default function ReaderDashboard() {
     <main className="min-h-screen bg-white font-sans">
 
       <Header />
+      {/* HEADER */}
+      <section className="px-16 py-10 flex justify-between items-start">
+        <div>
+          <h1 className="text-4xl font-mono mb-2">Reader Dashboard</h1>
+          <p className="text-gray-600 text-lg">
+            Welcome back, Reader! Keep the streak alive.
+          </p>
+        </div>
+
+        <Image
+          src="/books_snoop.jpg"
+          alt="Snoopy"
+          width={180}
+          height={180}
+          className="object-contain"
+        />
+      </section>
 
       {/* QUICK STATS */}
       <section className="px-16 mt-4">
