@@ -1,72 +1,180 @@
+// import Image from "next/image";
+// import Leaderboard from "../leaderboard/page";
+
+// export default function CuratorDashboard() {
+//   return (
+//     <main className="min-h-screen bg-white font-sans">
+//       {/* HEADER */}
+//       <header className="px-6 md:px-16 py-6 flex justify-between items-center border-b">
+//         <h1 className="text-3xl font-mono">Curator Dashboard</h1>
+
+//         <div className="flex items-center gap-4">
+//           <button className="px-4 py-2 rounded-full bg-black text-white hover:opacity-80">
+//             Notifications
+//           </button>
+
+//           <Image
+//             src="/rewards_snoop.jpg"
+//             alt="Profile"
+//             width={40}
+//             height={40}
+//             className="rounded-full border"
+//           />
+//         </div>
+//       </header>
+
+//       {/* MAIN SECTION */}
+//       <section className="px-6 md:px-16 py-14">
+        
+//         <h2 className="text-4xl font-semibold mb-10">
+//           Welcome, Curator 👋
+//         </h2>
+
+//         {/* GRID OF FEATURES */}
+//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+//           {/* CREATE COMMUNITY */}
+// <a
+//   href="/curator/create-community"
+//   className="p-6 rounded-2xl border hover:shadow-xl transition bg-cover bg-center text-white relative overflow-hidden"
+//   style={{ backgroundImage: "url('/discover-community.png')" }}
+// >
+//   <div className="backdrop-blur-sm bg-black/40 p-4 rounded-xl inline-block">
+//     <h3 className="text-xl font-medium">Create Community</h3>
+//     <p className="opacity-90 mt-2 text-sm">
+//       Start a new reading club or discussion group.
+//     </p>
+//   </div>
+// </a>
+
+//           {/* ADD BOOKS */}
+// <a
+//   href="/curator/add-book"
+//   className="p-6 rounded-2xl border hover:shadow-xl transition bg-cover bg-center text-white relative overflow-hidden"
+//   style={{ backgroundImage: "url('/books_snoop.jpg')" }}
+// >
+//   <div className="backdrop-blur-sm bg-black/40 p-4 rounded-xl inline-block">
+//     <h3 className="text-xl font-medium">Add Books</h3>
+//     <p className="opacity-90 mt-2 text-sm">
+//       Add new books to the platform or your community list.
+//     </p>
+//   </div>
+// </a>
+
+//           {/* MANAGE CHALLENGES */}
+// <a
+//   href="/snoopy_left.png"
+//   className="p-6 rounded-2xl border hover:shadow-xl transition bg-cover bg-center text-white relative overflow-hidden"
+//   style={{ backgroundImage: "url('/bg-challenges.jpg')" }}
+// >
+//   <div className="backdrop-blur-sm bg-black/40 p-4 rounded-xl inline-block">
+//     <h3 className="text-xl font-medium">Manage Challenges</h3>
+//     <p className="opacity-90 mt-2 text-sm">
+//       Create, edit, or publish new reading challenges.
+//     </p>
+//   </div>
+// </a>
+
+// {/* APPROVE SUBMISSIONS */}
+// <a
+//   href="/curator/approvals"
+//   className="p-6 rounded-2xl border hover:shadow-xl transition bg-cover bg-center text-white relative overflow-hidden"
+//   style={{ backgroundImage: "url('/bg-approve.jpg')" }}
+// >
+//   <div className="backdrop-blur-sm bg-black/40 p-4 rounded-xl inline-block">
+//     <h3 className="text-xl font-medium">Approve Submissions</h3>
+//     <p className="opacity-90 mt-2 text-sm">
+//       Approve reviews, posts, and challenge completions.
+//     </p>
+//   </div>
+// </a>
+
+// {/* USER MANAGEMENT */}
+// <a
+//   href="/curator/users"
+//   className="p-6 rounded-2xl border hover:shadow-xl transition bg-cover bg-center text-white relative overflow-hidden"
+//   style={{ backgroundImage: "url('/bg-users.jpg')" }}
+// >
+//   <div className="backdrop-blur-sm bg-black/40 p-4 rounded-xl inline-block">
+//     <h3 className="text-xl font-medium">Manage Users</h3>
+//     <p className="opacity-90 mt-2 text-sm">
+//       View and manage community members.
+//     </p>
+//   </div>
+// </a>
+
+// {/* ANALYTICS */}
+// <a
+//   href="/curator/explore"
+//   className="p-6 rounded-2xl border hover:shadow-xl transition bg-cover bg-center text-white relative overflow-hidden"
+//   style={{ backgroundImage: "url('/bg-analytics.jpg')" }}
+// >
+//   <div className="backdrop-blur-sm bg-black/40 p-4 rounded-xl inline-block">
+//     <h3 className="text-xl font-medium">Explore</h3>
+//     <p className="opacity-90 mt-2 text-sm">
+//       Track user activity, engagement, and reading stats.
+//     </p>
+//   </div>
+// </a>
+
+//         </div>
+
+//         {/* LEADERBOARD SECTION */}
+// <div className="flex justify-center mt-16">
+//   <Leaderboard />
+// </div>
+
+
+//       </section>
+//     </main>
+//   );
+// }
 import Image from "next/image";
-import Header from "@/app/header/page";
-import Footer from "@/app/footer/page";
-export default function HomePage() {
+import Link from "next/link";
+
+export default function CuratorDashboard() {
   return (
     <main className="min-h-screen bg-white font-sans">
-      
 
-      <section className="px-6 md:px-16 py-20 flex flex-col md:flex-row items-center justify-between gap-12">
-        
-        {/* LEFT CONTENT */}
-        <div className="max-w-xl">
-          {/* Main Heading */}
-          <h1 className="text-5xl md:text-6xl font-mono leading-tight">
-            Where Every Chapter <br />
-            Unlocks a{" "}
-            <span className="text-yellow-400">New</span> <br />
-            <span className="text-yellow-400">Achievement</span>
-          </h1>
+      {/* HEADER */}
+      <header className="px-6 md:px-16 py-6 flex justify-between items-center border-b">
+        <h1 className="text-3xl font-mono">Curator Dashboard</h1>
 
-          {/* Buttons */}
-          <div className="flex items-center gap-6 mt-10">
-            <a
-              href="/signup"
-              className="px-10 py-3 bg-black text-white rounded-full text-lg hover:opacity-80"
-            >
-              join now
-            </a>
+        <div className="flex items-center gap-4">
+          <button className="px-4 py-2 rounded-full bg-black text-white hover:opacity-80">
+            Notifications
+          </button>
 
-            <a
-              href="/explore"
-              className="px-10 py-3 border border-black rounded-full text-lg hover:bg-black hover:text-white transition"
-            >
-              explore challenges
-            </a>
-          </div>
-
-          {/* Stats Section */}
-          <div className="flex gap-16 mt-16 text-center">
-            <div>
-              <h3 className="text-2xl font-medium">23.1K+</h3>
-              <p className="text-sm opacity-70 mt-1">happy readers</p>
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-medium">18.1K+</h3>
-              <p className="text-sm opacity-70 mt-1">books read</p>
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-medium">50+</h3>
-              <p className="text-sm opacity-70 mt-1">fun challenges</p>
-            </div>
-          </div>
-        </div>
-
-        {/* IMAGE RIGHT SIDE */}
-        <div className="flex-shrink-0">
           <Image
-            src="/home.png"
-            alt="Kids reading illustration"
-            width={600}
-            height={600}
-            className="object-contain"
-            priority
+            src="/rewards_snoop.jpg"
+            alt="Profile"
+            width={40}
+            height={40}
+            className="rounded-full border"
           />
         </div>
+      </header>
+
+      {/* MAIN SECTION */}
+      <section className="px-6 md:px-16 py-20">
+
+        <h2 className="text-4xl font-semibold mb-6">
+          Welcome, Curator 👋
+        </h2>
+
+        <p className="text-gray-700 text-lg mb-10">
+          Manage communities, books, challenges, users and more — all from your dashboard.
+        </p>
+
+        {/* EXPLORE BUTTON */}
+        <Link
+          href="/curator/explore"
+          className="inline-block px-8 py-4 rounded-full bg-black text-white text-lg hover:opacity-80 transition shadow-lg"
+        >
+          Go to Explore →
+        </Link>
+
       </section>
-      
     </main>
   );
 }
