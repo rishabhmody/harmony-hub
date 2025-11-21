@@ -16,14 +16,14 @@ export default function Footer() {
           <div className="flex items-center gap-3 mb-6">
             <img
               src="/logo.png"
-              alt="LevelUpReads"
+              alt="Harmony Hub"
               className="w-10 h-10"
             />
-            <h2 className="text-3xl font-semibold">levelupReads</h2>
+            <h2 className="text-3xl font-semibold">Harmony Hub</h2>
           </div>
 
           <p className="text-lg leading-relaxed w-64 mb-6">
-            Track progress, earn badges, and make reading friends!
+            Discover talent, host events, and connect with fellow artists!
           </p>
 
           {/* Social Icons */}
@@ -38,9 +38,9 @@ export default function Footer() {
         <div>
           <h3 className="text-3xl font-semibold mb-6">Explore</h3>
           <ul className="text-xl space-y-3">
-            <li>browse books</li>
-            <li>fun challenges</li>
-            <li>badges and rewards</li>
+            <li>explore listings</li>
+            <li>creative challenges</li>
+            <li>achievements & rewards</li>
             <li>communities</li>
           </ul>
         </div>
@@ -51,7 +51,7 @@ export default function Footer() {
           <ul className="text-xl space-y-3">
             <li>help center</li>
             <li>contact us</li>
-            <li>reading tips</li>
+            <li>artist tips</li>
             <li>parent guide</li>
           </ul>
         </div>
@@ -70,7 +70,7 @@ export default function Footer() {
             </p>
 
             <p className="flex items-center gap-3">
-              <MdEmail size={22} /> levelupreads@gmail.com
+              <MdEmail size={22} /> harmonyhub@gmail.com
             </p>
           </div>
         </div>

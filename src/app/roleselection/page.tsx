@@ -13,7 +13,7 @@ export default function LoginRolePage() {
             src="/snoopy_left.png"   // ❗ use the SAME image used in your login page
             width={380}
             height={380}
-            alt="snoopy on scooter"
+            alt="musician playing instrument"
             className="object-contain"
             priority
           />
@@ -32,9 +32,9 @@ export default function LoginRolePage() {
             href="/reader/login"
             className="border border-black rounded-xl py-4 px-6 w-80 mb-5 hover:shadow-[4px_4px_0_#000] w-full text-center"
           >
-            <p className="text-xl tracking-wide w-full text-center">log in as a reader</p>
+            <p className="text-xl tracking-wide w-full text-center">log in as an artist</p>
             <p className="text-gray-600 text-sm mt-1 w-full text-center">
-              continue your reading journey
+              continue your artistic journey
             </p>
           </Link>
 
@@ -43,9 +43,9 @@ export default function LoginRolePage() {
             href="/curator/login"
             className="border border-black rounded-xl py-4 px-6 w-80 hover:shadow-[4px_4px_0_#000] w-full text-center"
           >
-            <p className="text-xl tracking-wide w-full text-center">log in as a curator</p>
+            <p className="text-xl tracking-wide w-full text-center">log in as a venue</p>
             <p className="text-gray-600 text-sm mt-1 w-full text-center">
-              manage books, challenges & rewards
+              manage events, artists & rewards
             </p>
           </Link>
 

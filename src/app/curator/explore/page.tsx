@@ -4,16 +4,16 @@ import { useState } from "react";
 import Header from "@/app/header/page";
 import Footer from "@/app/footer/page"
 
-export default function ExploreBooksCurator() {
+export default function ExploreArtistsVenuesCurator() {
   const [selectedFilter, setSelectedFilter] = useState("All");
 
   const filters = ["All", "Mystery", "Fantasy", "Thriller"];
 
-  const books = Array(9).fill({
-    title: "The Midnight Library",
-    author: "Matt Haig",
-    genre: "Fiction",
-    image: "/book_sample.jpg", // replace with your actual path
+  const listings = Array(9).fill({
+    title: "Local Jazz Night",
+    artist: "Jazzy Rhythms Band",
+    genre: "Jazz",
+    image: "/placeholder_gig.jpg", // replace with a suitable placeholder
   });
 
   return (
@@ -23,8 +23,8 @@ export default function ExploreBooksCurator() {
       {/* PAGE HEADER */}
       <div className="flex justify-between items-start px-10 mt-10">
         <div>
-          <h1 className="text-3xl font-bold">Explore Books</h1>
-          <p className="text-sm text-gray-600">Curate books that inspire the community.</p>
+          <h1 className="text-3xl font-bold">Explore Artists & Venues</h1>
+          <p className="text-sm text-gray-600">Discover and promote talent for the community.</p>
         </div>
 
         <Image
@@ -42,7 +42,7 @@ export default function ExploreBooksCurator() {
           <span className="text-gray-500">🔍</span>
           <input
             type="text"
-            placeholder="Search for books, authors, genres"
+            placeholder="Search for artists, venues, genres"
             className="w-full outline-none text-sm"
           />
         </div>
@@ -67,25 +67,25 @@ export default function ExploreBooksCurator() {
 
       {/* BOOK GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-10 mt-10 pb-20">
-        {books.map((book, index) => (
+        {listings.map((listing, index) => (
           <div
             key={index}
             className="border rounded-2xl p-4 shadow-sm hover:shadow-md transition"
           >
             <Image
-              src={book.image}
-              alt={book.title}
+              src={listing.image}
+              alt={listing.title}
               width={200}
               height={260}
               className="w-full rounded-xl"
             />
 
-            <h3 className="mt-4 font-semibold text-lg">{book.title}</h3>
-            <p className="text-sm text-gray-700">{book.author}</p>
-            <p className="text-xs text-gray-500">{book.genre}</p>
+            <h3 className="mt-4 font-semibold text-lg">{listing.title}</h3>
+            <p className="text-sm text-gray-700">{listing.artist}</p>
+            <p className="text-xs text-gray-500">{listing.genre}</p>
 
             <button className="mt-4 w-full px-4 py-2 bg-black text-white rounded-full text-sm hover:opacity-80 transition">
-              Curate Book →
+              View Listing →
             </button>
           </div>
         ))}
@@ -94,7 +94,7 @@ export default function ExploreBooksCurator() {
       <Footer />
 
       <div className="text-center text-xs py-4 text-gray-500">
-        © 2025 levelupReads. Made with love for readers everywhere.
+        © 2025 Harmony Hub. Made with love for artists everywhere.
       </div>
     </div>
   );

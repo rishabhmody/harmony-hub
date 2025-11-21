@@ -1,13 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Header from "../header/page";
+import Header from "@/app/header/page";
 import Footer from "../footer/page"
 interface User {
   id: number;
   name: string;
-  books: number;
+  gigs: number;
   xp: number;
 }
+
 
 export default function LeaderboardPage() {
   const [users, setUsers] = useState<User[]>([]);
@@ -37,7 +38,7 @@ export default function LeaderboardPage() {
       </h1>
 
       <p className="text-gray-600 text-lg mb-10 text-center">
-        See our top readers! Every book you finish brings you closer to the top —
+        See our top artists and venues! Every performance or gig brings you closer to the top —
         this leaderboard updates in real time.
       </p>
 
@@ -46,7 +47,7 @@ export default function LeaderboardPage() {
 
         {/* 📌 LEFT: Leaderboard */}
         <div className="bg-[#fffdd0] w-[480px] rounded-3xl shadow-xl px-8 py-6 border border-gray-300">
-          <h2 className="text-3xl font-semibold text-center mb-6">top readers</h2>
+          <h2 className="text-3xl font-semibold text-center mb-6">Top Artists & Venues</h2>
 
           <div className="flex flex-col gap-4">
             {users.length === 0 && (
@@ -70,7 +71,7 @@ export default function LeaderboardPage() {
                   <div>
                     <p className="text-lg font-medium">{user.name}</p>
                     <p className="text-sm text-gray-500">
-                      {user.books} books read
+                      {user.gigs} gigs / performances
                     </p>
                   </div>
                 </div>

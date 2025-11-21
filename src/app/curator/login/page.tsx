@@ -13,8 +13,8 @@ export default function LoginPage() {
 
       {/* HEADER — always visible */}
       <header className="p-4 flex items-center space-x-2 absolute top-0 left-0">
-        <img src="/logo.png" alt="LevelupReads Logo" className="h-6 w-6" />
-        <span className="text-xl font-semibold">levelupReads</span>
+        <img src="/logo.png" alt="Harmony Hub Logo" className="h-6 w-6" />
+        <span className="text-xl font-semibold">Harmony Hub</span>
       </header>
 
       {/* LEFT — FORM SECTION */}

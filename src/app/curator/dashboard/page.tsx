@@ -5,7 +5,7 @@ import Link from "next/link";
 import Footer from "@/app/footer/page"
 import Header from "@/app/header/page";
 
-export default function CuratorDashboard() {
+export default function VenueDashboard() {
   return (
     <main className="min-h-screen bg-white font-sans">
 
@@ -14,9 +14,9 @@ export default function CuratorDashboard() {
       {/* HEADER */}
       <section className="px-16 py-10 flex justify-between items-start">
         <div>
-          <h1 className="text-4xl font-mono mb-2">Curator Dashboard</h1>
+          <h1 className="text-4xl font-mono mb-2">Venue Dashboard</h1>
           <p className="text-gray-600 text-lg">
-            Welcome back, Curator! Your knowledge guides the community.
+            Welcome back, Venue! Your stage shapes the community.
           </p>
         </div>
 
@@ -36,12 +36,12 @@ export default function CuratorDashboard() {
         <div className="flex gap-20 text-center">
           <div>
             <h3 className="text-4xl font-semibold">45</h3>
-            <p className="text-gray-600 mt-1">Books Curated</p>
+            <p className="text-gray-600 mt-1">Gigs Hosted</p>
           </div>
 
           <div>
             <h3 className="text-4xl font-semibold">25</h3>
-            <p className="text-gray-600 mt-1">Challenges Created</p>
+            <p className="text-gray-600 mt-1">Events Created</p>
           </div>
 
           <div>
@@ -53,7 +53,7 @@ export default function CuratorDashboard() {
 
       {/* RECENT BOOKS */}
       <section className="px-16 mt-14 mb-16">
-        <h2 className="text-3xl font-mono mb-10">Recently added books</h2>
+        <h2 className="text-3xl font-mono mb-10">Recently added events</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
 
@@ -63,19 +63,19 @@ export default function CuratorDashboard() {
               className="border p-4 rounded-2xl shadow-sm hover:shadow-lg transition"
             >
               <Image
-                src="/midnightlibrary.jpg"
-                alt="Book Cover"
+                src="/placeholder_gig.jpg" // Assuming a generic placeholder for now
+                alt="Event Poster"
                 width={300}
                 height={300}
                 className="rounded-xl mb-4"
               />
 
-              <h3 className="text-xl font-medium">The Midnight Library</h3>
-              <p className="text-gray-700">Matt Haig</p>
-              <p className="text-gray-500 text-sm">Fiction</p>
+              <h3 className="text-xl font-medium">Local Band Showcase</h3>
+              <p className="text-gray-700">The Live Venue</p>
+              <p className="text-gray-500 text-sm">Rock / Pop</p>
 
               <button className="mt-4 w-full py-2 bg-black text-white rounded-full hover:opacity-90">
-                Read more →
+                View event →
               </button>
             </div>
           ))}

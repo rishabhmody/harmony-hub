@@ -25,7 +25,7 @@ export default function ContactPage() {
         <div className="w-full text-center">
             <div className="border border-black rounded-xl px-6 py-8 w-[360px] shadow-sm w-full text-center">
           <p className="text-sm text-gray-700 mb-6 leading-relaxed w-full text-center">
-            get weekly book recommendations and reading challenges.
+            Stay updated on local gigs, collaborations, and artist spotlights.
           </p>
 
           <div className="flex items-center justify-between border-b border-black pb-2 text-sm">
@@ -51,7 +51,7 @@ export default function ContactPage() {
         <div className="absolute right-0 -top-14 flex items-center gap-3">
              {/* Happy reading */}
             <p className="text-3xl font-light italic tracking-wide font-[Caveat] text-[#2a2a2a] w-full text-center">
-                 happy reading :)
+                 Happy creating :)
               </p>
           {/* Bird */}
           <div className="relative">
