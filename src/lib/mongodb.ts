@@ -3,11 +3,12 @@
 // so code that expects a MongoClient (e.g. `@next-auth/mongodb-adapter`)
 // keeps working.
 import mongoose from 'mongoose'
+import { MongoClient } from 'mongodb'
 import dbConnect from './db'
 
-const clientPromise = (async () => {
+const clientPromise: Promise<MongoClient> = (async () => {
   await dbConnect()
-  return mongoose.connection.getClient()
+  return mongoose.connection.getClient() as unknown as MongoClient
 })()
 
 export default clientPromise

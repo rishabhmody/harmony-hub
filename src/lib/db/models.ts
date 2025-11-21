@@ -22,6 +22,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     enum: ['artist', 'venue'],
     required: [true, 'Please specify a role (artist or venue).'],
+    default: 'artist',
   },
   xp: {
     type: Number,

@@ -41,8 +41,8 @@ export default function SignupPage() {
 
         if (signInResponse?.error) {
           setError(signInResponse.error)
-        } else {
-          router.push('/home') // Redirect to dashboard or home page
+        } else if (signInResponse?.ok || !signInResponse) {
+          router.push('/home') // Redirect to home page on success
         }
       } else {
         setError(data.message || 'Failed to create account')

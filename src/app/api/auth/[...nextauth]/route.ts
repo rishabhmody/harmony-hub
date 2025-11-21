@@ -43,14 +43,56 @@ const handler = NextAuth({
   ],
   callbacks: {
     async session({ session, user }) {
-      // Ensure session.user exists and attach the id.
-      if (!session.user) {
-        // Minimal user object when not present
-        session.user = { id: user.id, name: user.name || null, email: user.email || null } as any
-      } else {
-        ;(session.user as any).id = user.id
+      if (!user) {
+        return session
       }
+
+      await dbConnect()
+
+      type MinimalUserRecord = {
+        role?: string
+        xp?: number
+        gigsPlayed?: number
+      }
+
+      const userRecord = (await User.findById(user.id).lean()) as
+        | MinimalUserRecord
+        | null
+
+      const enrichedUser = {
+        id: user.id,
+        name: user.name ?? session.user?.name ?? null,
+        email: user.email ?? session.user?.email ?? null,
+        role: userRecord?.role ?? 'artist',
+        xp: userRecord?.xp ?? 0,
+        gigsPlayed: userRecord?.gigsPlayed ?? 0,
+      }
+
+      session.user = enrichedUser as any
       return session
+    },
+  },
+  events: {
+    async createUser({ user }) {
+      if (!user?.email) {
+        return
+      }
+
+      await dbConnect()
+
+      const existing = await User.findOne({ email: user.email })
+      if (existing) {
+        return
+      }
+
+      await User.create({
+        email: user.email,
+        name: user.name || 'Harmony Hub User',
+        role: 'artist',
+        provider: 'oauth',
+        xp: 0,
+        gigsPlayed: 0,
+      })
     },
   },
 })
