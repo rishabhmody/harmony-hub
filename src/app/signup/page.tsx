@@ -42,7 +42,7 @@ export default function SignupPage() {
         if (signInResponse?.error) {
           setError(signInResponse.error)
         } else {
-          router.push('/dashboard') // Redirect to dashboard or home page
+          router.push('/home') // Redirect to dashboard or home page
         }
       } else {
         setError(data.message || 'Failed to create account')

@@ -20,6 +20,23 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Environment variables
+
+To run the app you need to provide NextAuth credentials; MongoDB uses a built-in Atlas URL unless you override it:
+
+```env
+MONGODB_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/harmonyhub?retryWrites=true&w=majority # optional, overrides the hardcoded Atlas URI
+NEXTAUTH_SECRET=<secure-random-string>
+GOOGLE_CLIENT_ID=<...>
+GOOGLE_CLIENT_SECRET=<...>
+GITHUB_CLIENT_ID=<...>
+GITHUB_CLIENT_SECRET=<...>
+```
+
+`MONGODB_URI` can also point to a local server (e.g. `mongodb://localhost:27017/harmonyhub`), but it must include working credentials for Atlas clusters. The server now logs a clearer message when authentication fails so you can verify the URI for `bad auth` errors.
+
+If you skip `MONGODB_URI`, the app falls back to `mongodb://localhost:27017/harmonyhub`, but you still need valid provider secrets for NextAuth to finish OAuth flows.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

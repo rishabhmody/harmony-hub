@@ -43,7 +43,13 @@ const handler = NextAuth({
   ],
   callbacks: {
     async session({ session, user }) {
-      session.user.id = user.id
+      // Ensure session.user exists and attach the id.
+      if (!session.user) {
+        // Minimal user object when not present
+        session.user = { id: user.id, name: user.name || null, email: user.email || null } as any
+      } else {
+        ;(session.user as any).id = user.id
+      }
       return session
     },
   },
