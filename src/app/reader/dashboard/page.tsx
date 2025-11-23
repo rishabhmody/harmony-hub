@@ -1,25 +1,31 @@
-import { auth } from "@/lib/auth"; 
-import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import Header from "@/app/header/page";
-import { db } from "@/db";
-import { book, user as userTable } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import dbConnect from "@/lib/db";
+import { User, Gig } from "@/lib/db/models";
 
 export default async function ArtistDashboard() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  // Get session using NextAuth
+  const session = await getServerSession(authOptions);
 
-  if (!session) {
+  if (!session?.user?.email) {
     redirect("/reader/login");
   }
 
+  // Connect to database
+  await dbConnect();
+
   // Fetch fresh user data for XP and Stats
-  const [userData] = await db.select().from(userTable).where(eq(userTable.id, session.user.id));
-  // In our new context, 'allBooks' are 'Past Gigs/Venues' added by curators
-  const allGigs = await db.select().from(book); 
+  const userData = await User.findOne({ email: session.user.email }).lean() as any;
+  
+  if (!userData) {
+    redirect("/reader/login");
+  }
+
+  // In our new context, 'allGigs' are 'Past Gigs/Venues' added by curators
+  const allGigs = await Gig.find({}).lean(); 
 
   return (
     <main className="min-h-screen bg-white font-sans">
@@ -82,11 +88,11 @@ export default async function ArtistDashboard() {
            </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {allGigs.map((gig) => (
-              <div key={gig.id} className="border border-gray-200 p-6 rounded-2xl shadow-sm hover:shadow-[4px_4px_0_#000] transition bg-white flex flex-col">
+            {allGigs.map((gig: any) => (
+              <div key={gig._id.toString()} className="border border-gray-200 p-6 rounded-2xl shadow-sm hover:shadow-[4px_4px_0_#000] transition bg-white flex flex-col">
                 <div className="flex items-center justify-between mb-4">
                     <div className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center text-xl font-bold">
-                        {gig.title.charAt(0)}
+                        {gig.title?.charAt(0) || 'G'}
                     </div>
                     <span className="text-xs bg-gray-100 px-3 py-1 rounded-full">{gig.genre || "Live Music"}</span>
                 </div>
@@ -96,7 +102,7 @@ export default async function ArtistDashboard() {
                 
                 <div className="mt-auto pt-4 border-t border-gray-100 flex justify-between items-center">
                     <span className="text-xs text-gray-500">Complete to earn:</span>
-                    <span className="font-bold text-green-600">+{gig.xpValue} XP</span>
+                    <span className="font-bold text-green-600">+{gig.xpValue || 0} XP</span>
                 </div>
               </div>
             ))}

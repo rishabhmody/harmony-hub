@@ -48,14 +48,6 @@ export default function LoginRolePage() {
               manage events, artists & rewards
             </p>
           </Link>
-
-          {/* Sign-up Redirect
-          <p className="mt-8 text-gray-600 text-sm">
-            don’t have an account?{" "}
-            <Link href="/signup" className="underline">
-              sign up
-            </Link>
-          </p> */}
         </div>
       </div>
     </div>

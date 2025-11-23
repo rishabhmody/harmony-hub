@@ -23,7 +23,7 @@ export default function ExploreArtistsVenuesCurator() {
       {/* PAGE HEADER */}
       <div className="flex justify-between items-start px-10 mt-10">
         <div>
-          <h1 className="text-3xl font-bold">Explore Artists & Venues</h1>
+          <h1 className="text-3xl font-bold">Learning Centre</h1>
           <p className="text-sm text-gray-600">Discover and promote talent for the community.</p>
         </div>
 

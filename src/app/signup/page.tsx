@@ -42,7 +42,12 @@ export default function SignupPage() {
         if (signInResponse?.error) {
           setError(signInResponse.error)
         } else if (signInResponse?.ok || !signInResponse) {
-          router.push('/home') // Redirect to home page on success
+          // Redirect based on role after signup
+          if (role === 'venue') {
+            router.push('/curator/dashboard')
+          } else {
+            router.push('/reader/dashboard')
+          }
         }
       } else {
         setError(data.message || 'Failed to create account')
@@ -71,7 +76,13 @@ export default function SignupPage() {
         {/* Social Buttons */}
         <div className="space-y-5 w-full max-w-md mb-8">
           <button
-            onClick={() => signIn('google')}
+            onClick={() => {
+              // Store role in sessionStorage before OAuth redirect
+              sessionStorage.setItem('signupRole', role)
+              signIn('google', {
+                callbackUrl: `${window.location.origin}/auth/callback?callbackUrl=${encodeURIComponent(role === 'venue' ? '/curator/dashboard' : '/reader/dashboard')}`,
+              })
+            }}
             className="w-full border rounded-full py-3 flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-100 transition"
           >
             <img src="/google-icon.svg" alt="" className="h-5 w-5" />
@@ -79,7 +90,13 @@ export default function SignupPage() {
           </button>
 
           <button
-            onClick={() => signIn('github')}
+            onClick={() => {
+              // Store role in sessionStorage before OAuth redirect
+              sessionStorage.setItem('signupRole', role)
+              signIn('github', {
+                callbackUrl: `${window.location.origin}/auth/callback?callbackUrl=${encodeURIComponent(role === 'venue' ? '/curator/dashboard' : '/reader/dashboard')}`,
+              })
+            }}
             className="w-full border rounded-full py-3 flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-100 transition"
           >
             <img src="/facebook-icon.svg" alt="" className="h-5 w-5" /> {/* Assuming facebook-icon for github */}

@@ -27,12 +27,12 @@ export default function HomePage() {
               join now
             </a>
 
-            <a
+            {/* <a
               href="/explore"
               className="px-10 py-3 border border-black rounded-full text-lg hover:bg-black hover:text-white transition"
             >
               explore events
-            </a>
+            </a> */}
           </div>
 
           {/* Stats Section */}

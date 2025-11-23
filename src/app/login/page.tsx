@@ -4,8 +4,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -18,18 +20,30 @@ export default function LoginPage() {
     setError(null)
 
     const result = await signIn('credentials', {
-      redirect: false, // Do not redirect, handle it manually
+      redirect: false,
       email,
       password,
     })
 
     if (result?.error) {
       setError(result.error)
-    } else {
-      // Redirect to a protected page or dashboard
-      window.location.href = '/dashboard' // or router.push('/dashboard') if using useRouter
+      setLoading(false)
+    } else if (result?.ok) {
+      // Fetch session to check user role and redirect accordingly
+      const session = await fetch('/api/auth/session').then(res => res.json())
+      if (session?.user?.role === 'venue') {
+        router.push('/curator/dashboard')
+      } else {
+        router.push('/reader/dashboard')
+      }
+      setLoading(false)
     }
-    setLoading(false)
+  }
+
+  const handleOAuthLogin = async (provider: 'google' | 'github') => {
+    await signIn(provider, {
+      callbackUrl: `${window.location.origin}/auth/callback`,
+    })
   }
 
   return (
@@ -51,7 +65,7 @@ export default function LoginPage() {
         {/* Social Buttons */}
         <div className="space-y-5 w-full max-w-md mb-8">
           <button
-            onClick={() => signIn('google')}
+            onClick={() => handleOAuthLogin('google')}
             className="w-full border rounded-full py-3 flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-100 transition"
           >
             <img src="/google-icon.svg" alt="" className="h-5 w-5" />
@@ -59,7 +73,7 @@ export default function LoginPage() {
           </button>
 
           <button
-            onClick={() => signIn('github')}
+            onClick={() => handleOAuthLogin('github')}
             className="w-full border rounded-full py-3 flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-100 transition"
           >
             <img src="/facebook-icon.svg" alt="" className="h-5 w-5" />
