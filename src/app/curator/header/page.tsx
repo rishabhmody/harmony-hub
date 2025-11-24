@@ -12,10 +12,10 @@ export default function Header() {
           <img src="/harmony logo2.png" alt="Harmony Hub Logo" className="h-8 w-8" />
           <span className="text-xl font-semibold">Harmony Hub</span>
         <nav className="hidden md:flex items-center space-x-6">
-          <Link href="/reader/dashboard" className="hover:text-blue-500 transition">Dashboard</Link>
-          <Link href="/reader/explore" className="hover:text-blue-500 transition">Explore</Link>
-          <Link href="/leaderboard" className="hover:text-blue-500 transition">Leaderboard</Link>
-          <Link href="/contact" className="hover:text-blue-500 transition">Contact</Link>
+          <Link href="/curator/dashboard" className="hover:text-blue-500 transition">Dashboard</Link>
+          <Link href="/curator/explore" className="hover:text-blue-500 transition">Explore</Link>
+          <Link href="/curator/leaderboard" className="hover:text-blue-500 transition">Leaderboard</Link>
+          <Link href="/curator/contact" className="hover:text-blue-500 transition">Contact</Link>
         </nav>
       </div>
       <div className="flex items-center space-x-4">

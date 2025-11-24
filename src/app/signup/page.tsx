@@ -315,7 +315,7 @@ export default function SignupPage() {
 
             <Image
 
-              src="/signup_image_2.jpg"
+              src="/login-signup page.jpg"
 
               alt="Artists collaborating"
 

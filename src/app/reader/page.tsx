@@ -1,4 +1,4 @@
-import Header from "@/app/header/page";
+import Header from "@/app/reader/header/page";
 import Image from "next/image";
 import Footer from "@/app/footer/page"
 import HomePage from "@/app/reader/dashboard/page";

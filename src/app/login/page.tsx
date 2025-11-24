@@ -10,6 +10,7 @@ export default function LoginPage() {
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [role, setRole] = useState<'artist' | 'venue'>('artist')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [showPassword, setShowPassword] = useState(false)
@@ -42,7 +43,7 @@ export default function LoginPage() {
 
   const handleOAuthLogin = async (provider: 'google' | 'facebook') => {
     await signIn(provider, {
-      callbackUrl: `${window.location.origin}/auth/callback`,
+      callbackUrl: `${window.location.origin}/auth/callback?callbackUrl=${encodeURIComponent(role === 'venue' ? '/curator/dashboard' : '/reader/dashboard')}`,
     })
   }
 
@@ -143,6 +144,60 @@ export default function LoginPage() {
             </label>
           </div>
 
+          <div className="w-full">
+
+              <label className="block text-gray-400 text-sm mb-2">I am signing up as a:</label>
+
+              <div className="flex gap-4">
+
+                <button
+
+                  type="button"
+
+                  onClick={() => setRole('artist')}
+
+                  className={`flex-1 py-3 rounded-xl border text-center transition ${
+
+                    role === 'artist'
+
+                      ? 'bg-blue-500 text-white border-blue-500'
+
+                      : 'bg-gray-800 text-white border-gray-700 hover:bg-gray-700'
+
+                  }`}
+
+                >
+
+                  Artist
+
+                </button>
+
+                <button
+
+                  type="button"
+
+                  onClick={() => setRole('venue')}
+
+                  className={`flex-1 py-3 rounded-xl border text-center transition ${
+
+                    role === 'venue'
+
+                      ? 'bg-blue-500 text-white border-blue-500'
+
+                      : 'bg-gray-800 text-white border-gray-700 hover:bg-gray-700'
+
+                  }`}
+
+                >
+
+                  Venue
+
+                </button>
+
+              </div>
+
+          </div>
+
           {/* Login Button */}
           <button
             type="submit"
@@ -166,9 +221,9 @@ export default function LoginPage() {
       <div className="w-full md:w-1/2 flex justify-center items-center bg-gray-800 rounded-t-3xl md:rounded-l-3xl md:rounded-t-none p-6 md:p-0">
         <div className="overflow-hidden rounded-3xl shadow-lg w-full max-w-md md:max-w-none">
           <Image
-            src="/Login_image_2.jpg"
+            src="/login-signup page.jpg"
             alt="Musician performing illustration"
-            width={500}
+            width={700}
             height={700}
             className="object-cover w-full h-auto rounded-3xl"
           />

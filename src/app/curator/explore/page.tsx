@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
-import Header from "@/app/header/page";
+import Header from "@/app/curator/header/page";
 import Footer from "@/app/footer/page";
 
 export default function ExploreArtistsVenuesCurator() {
@@ -13,11 +13,11 @@ export default function ExploreArtistsVenuesCurator() {
     title: "Local Jazz Night",
     artist: "Jazzy Rhythms Band",
     genre: "Jazz",
-    image: "/placeholder_gig.jpg", // replace with a suitable placeholder
+    image: "/Gemini_Generated_Image_4fisvt4fisvt4fis.png", // replace with a suitable placeholder
   });
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white font-[Poppins]">
+    <div className="min-h-screen bg-gray-900 text-white">
       <Header />
       {/* PAGE HEADER */}
       <div className="flex justify-between items-start px-10 mt-10">
@@ -27,7 +27,7 @@ export default function ExploreArtistsVenuesCurator() {
         </div>
 
         <Image
-          src="/explore_icon.png"
+          src="/R&B band.png"
           alt="Explore Illustration"
           width={150}
           height={150}

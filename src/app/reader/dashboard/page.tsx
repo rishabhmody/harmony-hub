@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import Image from "next/image";
-import Header from "@/app/header/page";
+import Header from "@/app/reader/header/page";
 import Footer from "@/app/footer/page"
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -41,7 +41,7 @@ export default async function ArtistDashboard() {
           </p>
         </div>
         <Image
-          src="/guitar_icon.png" 
+          src="/harmony logo2.png" 
           alt="Guitar"
           width={100}
           height={100}

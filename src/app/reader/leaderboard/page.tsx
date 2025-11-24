@@ -1,5 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Header from "@/app/reader/header/page";
+import Footer from "@/app/footer/page";
 
 interface User {
   _id: string;
@@ -34,6 +36,7 @@ export default function LeaderboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
+      <Header />
       <div className="w-full flex flex-col items-center py-12">
 
       {/* Header */}
@@ -42,7 +45,7 @@ export default function LeaderboardPage() {
       </h1>
 
       <p className="text-gray-400 text-lg mb-10 text-center">
-        See our top artists! Every lesson you complete brings you closer to the top.
+        See our top artists and venues! Every lesson or gig brings you closer to the top.
       </p>
 
       {/* Layout: Leaderboard Left — Image Right */}
@@ -50,7 +53,7 @@ export default function LeaderboardPage() {
 
         {/* 📌 LEFT: Leaderboard */}
         <div className="bg-gray-800 w-[480px] rounded-3xl shadow-xl px-8 py-6 border border-gray-700">
-          <h2 className="text-3xl font-semibold text-center mb-6">Top Artists</h2>
+          <h2 className="text-3xl font-semibold text-center mb-6">Top Artists & Venues</h2>
 
           <div className="flex flex-col gap-4">
             {loading ? (
@@ -67,7 +70,7 @@ export default function LeaderboardPage() {
                     <span className="text-xl font-medium w-6">{index + 1}.</span>
 
                     <div className="w-12 h-12 rounded-full border bg-gray-600 flex items-center justify-center">
-                      <span className="text-xl">🎸</span>
+                      <span className="text-xl">{user.role === 'venue' ? '🎭' : '🎸'}</span>
                     </div>
 
                     <div>
@@ -98,9 +101,7 @@ export default function LeaderboardPage() {
         />
       </div>
     </div>
-    
+      <Footer />
     </div>
   );
 }
-
-

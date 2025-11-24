@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Header from "@/app/header/page";
+import Header from "@/app/reader/header/page";
 import Footer from "../footer/page"
 
 interface User {

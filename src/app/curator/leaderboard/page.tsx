@@ -1,5 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Header from "@/app/curator/header/page";
+import Footer from "@/app/footer/page";
 
 interface User {
   _id: string;
@@ -34,6 +36,7 @@ export default function LeaderboardPage() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
+      <Header />
       <div className="w-full flex flex-col items-center py-12">
 
       {/* Header */}
@@ -98,9 +101,7 @@ export default function LeaderboardPage() {
         />
       </div>
     </div>
-    
+      <Footer />
     </div>
   );
 }
-
-

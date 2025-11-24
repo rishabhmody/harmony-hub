@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import Header from "@/app/header/page";
+import Header from "@/app/reader/header/page";
 import Footer from "@/app/footer/page";
 
 const categories = ["Guitar", "Piano", "Drums", "Theory", "Vocals", "Production"];
