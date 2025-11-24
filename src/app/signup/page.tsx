@@ -59,142 +59,280 @@ export default function SignupPage() {
     }
   }
 
-  return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-white">
-      <header className="fixed top-0 left-0 w-full bg-white p-4 z-50">
-        <Link href="/" className="flex items-center space-x-2">
-          <img src="/logo.png" alt="Logo" className="h-6 w-6" />
-          <span className="text-xl font-semibold">Harmony Hub</span>
-        </Link>
-      </header>
+    return (
 
-      <div className="flex flex-col justify-center items-center w-full md:w-1/2 px-8 md:px-16 py-20">
-        <h1 className="text-4xl font-medium mb-10 text-center md:text-left">
-          Join Harmony Hub
-        </h1>
+      <div className="flex flex-col md:flex-row min-h-screen bg-gray-900 text-white">
 
-        {/* Social Buttons */}
-        <div className="space-y-5 w-full max-w-md mb-8">
-          <button
-            onClick={() => {
-              // Store role in sessionStorage before OAuth redirect
-              sessionStorage.setItem('signupRole', role)
-              signIn('google', {
-                callbackUrl: `${window.location.origin}/auth/callback?callbackUrl=${encodeURIComponent(role === 'venue' ? '/curator/dashboard' : '/reader/dashboard')}`,
-              })
-            }}
-            className="w-full border rounded-full py-3 flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-100 transition"
-          >
-            <img src="/google-icon.svg" alt="" className="h-5 w-5" />
-            Continue with Google
-          </button>
+        <header className="fixed top-0 left-0 w-full bg-gray-900 p-4 z-50">
 
-          <button
-            onClick={() => {
-              // Store role in sessionStorage before OAuth redirect
-              sessionStorage.setItem('signupRole', role)
-              signIn('github', {
-                callbackUrl: `${window.location.origin}/auth/callback?callbackUrl=${encodeURIComponent(role === 'venue' ? '/curator/dashboard' : '/reader/dashboard')}`,
-              })
-            }}
-            className="w-full border rounded-full py-3 flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-100 transition"
-          >
-            <img src="/facebook-icon.svg" alt="" className="h-5 w-5" /> {/* Assuming facebook-icon for github */}
-            Continue with Github
-          </button>
-        </div>
+          <Link href="/" className="flex items-center space-x-2">
 
-        {/* Divider */}
-        <div className="flex items-center my-8">
-          <span className="flex-1 border-t" />
-          <span className="px-4 text-gray-500 text-sm">or create an account with email</span>
-          <span className="flex-1 border-t" />
-        </div>
+            <img src="/harmony logo2.png" alt="Logo" className="h-6 w-6" />
 
-        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+            <span className="text-xl font-semibold">Harmony Hub</span>
 
-        <form onSubmit={handleEmailSignup} className="w-full max-w-md space-y-5">
-          <input
-            type="text"
-            placeholder="Full Name"
-            className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-          <input
-            type="email"
-            placeholder="Email address"
-            className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-gray-500"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          </Link>
 
-          <div className="w-full">
-            <label className="block text-gray-700 text-sm mb-2">I am signing up as a:</label>
-            <div className="flex gap-4">
-              <button
-                type="button"
-                onClick={() => setRole('artist')}
-                className={`flex-1 py-3 rounded-xl border text-center transition ${
-                  role === 'artist'
-                    ? 'bg-black text-white border-black'
-                    : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'
-                }`}
-              >
-                Artist
-              </button>
-              <button
-                type="button"
-                onClick={() => setRole('venue')}
-                className={`flex-1 py-3 rounded-xl border text-center transition ${
-                  role === 'venue'
-                    ? 'bg-black text-white border-black'
-                    : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'
-                }`}
-              >
-                Venue
-              </button>
-            </div>
+        </header>
+
+  
+
+        <div className="flex flex-col justify-center items-center w-full md:w-1/2 px-8 md:px-16 py-20">
+
+          <h1 className="text-4xl font-medium mb-10 text-center md:text-left">
+
+            Join Harmony Hub
+
+          </h1>
+
+  
+
+          {/* Social Buttons */}
+
+          <div className="space-y-5 w-full max-w-md mb-8">
+
+            <button
+
+              onClick={() => {
+
+                // Store role in sessionStorage before OAuth redirect
+
+                sessionStorage.setItem('signupRole', role)
+
+                signIn('google', {
+
+                  callbackUrl: `${window.location.origin}/auth/callback?callbackUrl=${encodeURIComponent(role === 'venue' ? '/curator/dashboard' : '/reader/dashboard')}`,
+
+                })
+
+              }}
+
+              className="w-full border rounded-full py-3 flex items-center justify-center gap-2 text-white hover:bg-gray-800 transition"
+
+            >
+
+              <img src="/google-icon.svg" alt="" className="h-5 w-5" />
+
+              Continue with Google
+
+            </button>
+
+  
+
+            <button
+
+              onClick={() => {
+
+                // Store role in sessionStorage before OAuth redirect
+
+                sessionStorage.setItem('signupRole', role)
+
+                signIn('facebook', {
+
+                  callbackUrl: `${window.location.origin}/auth/callback?callbackUrl=${encodeURIComponent(role === 'venue' ? '/curator/dashboard' : '/reader/dashboard')}`,
+
+                })
+
+              }}
+
+              className="w-full border rounded-full py-3 flex items-center justify-center gap-2 text-white hover:bg-gray-800 transition"
+
+            >
+
+              <img src="/github logo.png" alt="" className="h-5 w-5" /> 
+
+              Continue with GitHub
+
+            </button>
+
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-black text-white py-3 rounded-full hover:bg-gray-800 transition disabled:opacity-50"
-          >
-            {loading ? 'Creating Account...' : 'Sign up'}
-          </button>
-        </form>
+  
 
-        <p className="text-center text-gray-600 text-sm mt-5">
-          Already have an account?{' '}
-          <Link href="/login" className="underline">
-            Log in
-          </Link>
-        </p>
-      </div>
+          {/* Divider */}
 
-      <div className="w-full md:w-1/2 flex justify-center items-center bg-gray-100 md:h-screen p-6">
-        <div className="overflow-hidden rounded-3xl shadow-lg w-full max-w-md">
-          <Image
-            src="/signup_image.jpg"
-            alt="Artists collaborating"
-            width={500}
-            height={700}
-            className="object-cover w-full h-full"
-          />
+          <div className="flex items-center my-8">
+
+            <span className="flex-1 border-t border-gray-700" />
+
+            <span className="px-4 text-gray-500 text-sm">or create an account with email</span>
+
+            <span className="flex-1 border-t border-gray-700" />
+
+          </div>
+
+  
+
+          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+
+  
+
+          <form onSubmit={handleEmailSignup} className="w-full max-w-md space-y-5">
+
+            <input
+
+              type="text"
+
+              placeholder="Full Name"
+
+              className="w-full bg-gray-800 border-gray-700 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+
+              value={name}
+
+              onChange={(e) => setName(e.target.value)}
+
+              required
+
+            />
+
+            <input
+
+              type="email"
+
+              placeholder="Email address"
+
+              className="w-full bg-gray-800 border-gray-700 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+
+              value={email}
+
+              onChange={(e) => setEmail(e.target.value)}
+
+              required
+
+            />
+
+            <input
+
+              type="password"
+
+              placeholder="Password"
+
+              className="w-full bg-gray-800 border-gray-700 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+
+              value={password}
+
+              onChange={(e) => setPassword(e.target.value)}
+
+              required
+
+            />
+
+  
+
+            <div className="w-full">
+
+              <label className="block text-gray-400 text-sm mb-2">I am signing up as a:</label>
+
+              <div className="flex gap-4">
+
+                <button
+
+                  type="button"
+
+                  onClick={() => setRole('artist')}
+
+                  className={`flex-1 py-3 rounded-xl border text-center transition ${
+
+                    role === 'artist'
+
+                      ? 'bg-blue-500 text-white border-blue-500'
+
+                      : 'bg-gray-800 text-white border-gray-700 hover:bg-gray-700'
+
+                  }`}
+
+                >
+
+                  Artist
+
+                </button>
+
+                <button
+
+                  type="button"
+
+                  onClick={() => setRole('venue')}
+
+                  className={`flex-1 py-3 rounded-xl border text-center transition ${
+
+                    role === 'venue'
+
+                      ? 'bg-blue-500 text-white border-blue-500'
+
+                      : 'bg-gray-800 text-white border-gray-700 hover:bg-gray-700'
+
+                  }`}
+
+                >
+
+                  Venue
+
+                </button>
+
+              </div>
+
+            </div>
+
+  
+
+            <button
+
+              type="submit"
+
+              disabled={loading}
+
+              className="w-full bg-blue-500 text-white py-3 rounded-full hover:bg-blue-600 transition disabled:opacity-50"
+
+            >
+
+              {loading ? 'Creating Account...' : 'Sign up'}
+
+            </button>
+
+          </form>
+
+  
+
+          <p className="text-center text-gray-400 text-sm mt-5">
+
+            Already have an account?{' '}
+
+            <Link href="/login" className="underline">
+
+              Log in
+
+            </Link>
+
+          </p>
+
         </div>
+
+  
+
+        <div className="w-full md:w-1/2 flex justify-center items-center bg-gray-800 md:h-screen p-6">
+
+          <div className="overflow-hidden rounded-3xl shadow-lg w-full max-w-md">
+
+            <Image
+
+              src="/signup_image_2.jpg"
+
+              alt="Artists collaborating"
+
+              width={500}
+
+              height={700}
+
+              className="object-cover w-full h-full"
+
+            />
+
+          </div>
+
+        </div>
+
       </div>
-    </div>
-  )
-}
+
+    )
+
+  }  

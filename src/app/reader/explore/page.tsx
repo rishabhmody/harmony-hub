@@ -4,8 +4,9 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import Header from "@/app/header/page";
+import Footer from "@/app/footer/page";
 
-const categories = ["Guitar", "Piano", "Drums", "Theory"];
+const categories = ["Guitar", "Piano", "Drums", "Theory", "Vocals", "Production"];
 
 // Static learning content
 const lessons = [
@@ -15,6 +16,8 @@ const lessons = [
   { id: "4", title: "Circle of Fifths", author: "Music Theory", xp: 150, type: "Theory", difficulty: "Intermediate" },
   { id: "5", title: "Piano Fundamentals: Scales", author: "Piano Mastery", xp: 50, type: "Piano", difficulty: "Beginner", objective: "Master major and minor scales on piano" },
   { id: "6", title: "Power Chords", author: "Rock Guitar", xp: 60, type: "Guitar", difficulty: "Beginner" },
+  { id: "7", title: "Vocal Warm-ups", author: "Singing Success", xp: 40, type: "Vocals", difficulty: "Beginner" },
+  { id: "8", title: "Intro to Compression", author: "Audio Production", xp: 120, type: "Production", difficulty: "Intermediate" },
 ];
 
 export default function ArtistExploreSection() {
@@ -128,29 +131,27 @@ export default function ArtistExploreSection() {
   };
 
   return (
-    <main className="min-h-screen bg-white font-sans">
+    <main className="min-h-screen bg-gray-900 text-white font-sans">
       <Header />
-
       {/* HERO */}
-      <section className="px-10 py-10 flex flex-col-reverse md:flex-row justify-between items-center bg-yellow-50">
+      <section className="px-10 py-10 flex flex-col-reverse md:flex-row justify-between items-center bg-gray-800">
         <div>
             <h1 className="text-4xl font-mono font-bold mb-2">Learning Centre</h1>
-            <p className="text-gray-700 max-w-md">
+            <p className="text-gray-400 max-w-md">
                 Discover new lessons, master skills, and earn XP to climb the leaderboard.
             </p>
         </div>
-        {/* Snoopy Reading = Studying Music Theory */}
         <Image
-          src="/books_snoop.jpg"
+          src="/learning_icon.png"
           alt="Music collaboration illustration"
-          width={160}
-          height={160}
+          width={150}
+          height={150}
           className="object-contain rounded-xl shadow-md mb-6 md:mb-0"
         />
       </section>
 
       {/* FILTER */}
-      <div className="sticky top-[73px] bg-white z-40 py-4 border-b px-10">
+      <div className="sticky top-0 bg-gray-900 z-40 py-4 border-b border-gray-700 px-10">
         <div className="flex gap-3 overflow-x-auto">
           {categories.map((c, i) => (
             <button
@@ -159,8 +160,8 @@ export default function ArtistExploreSection() {
               className={`px-6 py-2 rounded-full text-sm font-medium transition whitespace-nowrap
                 ${
                   activeCategory === c
-                    ? "bg-black text-white"
-                    : "bg-white text-black border hover:bg-gray-50"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-800 text-white border border-gray-700 hover:bg-gray-700"
                 }
               `}
             >
@@ -177,20 +178,20 @@ export default function ArtistExploreSection() {
           return (
             <div
               key={index}
-              className={`border-2 border-black rounded-xl p-6 flex flex-col items-start shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all cursor-pointer bg-white ${
+              className={`border-2 border-gray-700 rounded-xl p-6 flex flex-col items-start shadow-lg hover:shadow-blue-500/50 transition-all cursor-pointer bg-gray-800 ${
                 isCompleted ? 'opacity-75' : ''
               }`}
             >
-              <span className="bg-yellow-300 px-2 py-1 text-xs font-bold rounded mb-3 uppercase tracking-wide">
+              <span className="bg-blue-500 px-2 py-1 text-xs font-bold rounded mb-3 uppercase tracking-wide">
                   {lesson.type}
               </span>
 
               <h3 className="font-bold text-xl mb-1">{lesson.title}</h3>
-              <p className="text-gray-500 text-sm mb-6">{lesson.author}</p>
+              <p className="text-gray-400 text-sm mb-6">{lesson.author}</p>
 
               <div className="mt-auto w-full flex justify-between items-center">
                   <span className="text-sm font-mono">Reward</span>
-                  <span className="font-bold text-lg">+{lesson.xp} XP</span>
+                  <span className="font-bold text-lg text-green-400">+{lesson.xp} XP</span>
               </div>
               
               <button 
@@ -198,7 +199,7 @@ export default function ArtistExploreSection() {
                 className={`mt-4 w-full py-2 rounded-lg text-sm font-bold transition ${
                   isCompleted 
                     ? 'bg-green-600 text-white' 
-                    : 'bg-black text-white hover:bg-gray-800'
+                    : 'bg-blue-500 text-white hover:bg-blue-600'
                 }`}
               >
                 {isCompleted ? 'Completed' : 'Start Lesson'}
@@ -210,20 +211,20 @@ export default function ArtistExploreSection() {
 
       {/* LESSON MODAL */}
       {isModalOpen && selectedLesson && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={handleCloseModal}>
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4" onClick={handleCloseModal}>
           <div 
-            className="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl"
+            className="bg-gray-800 text-white rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-gray-700"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="flex justify-between items-start p-5 border-b border-gray-200">
+            <div className="flex justify-between items-start p-5 border-b border-gray-700">
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-1">{selectedLesson.title}</h2>
-                <p className="text-gray-600 text-sm">Learn and complete this lesson to earn XP.</p>
+                <h2 className="text-2xl font-bold text-white mb-1">{selectedLesson.title}</h2>
+                <p className="text-gray-400 text-sm">Learn and complete this lesson to earn XP.</p>
               </div>
               <button
                 onClick={handleCloseModal}
-                className="text-gray-400 hover:text-gray-600 text-3xl font-light leading-none"
+                className="text-gray-400 hover:text-gray-200 text-3xl font-light leading-none"
               >
                 ×
               </button>
@@ -233,32 +234,32 @@ export default function ArtistExploreSection() {
             <div className="p-5">
               {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-4">
-                <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                <span className="bg-green-800 text-green-300 px-3 py-1 rounded-full text-sm font-medium">
                   {selectedLesson.difficulty || 'Beginner'}
                 </span>
-                <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-medium">
+                <span className="bg-purple-800 text-purple-300 px-3 py-1 rounded-full text-sm font-medium">
                   {selectedLesson.type}
                 </span>
-                <span className="flex items-center gap-1 bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">
+                <span className="flex items-center gap-1 bg-yellow-800 text-yellow-300 px-3 py-1 rounded-full text-sm font-medium">
                   ⭐ {selectedLesson.xp} XP
                 </span>
               </div>
 
               {/* Objective */}
               {selectedLesson.objective && (
-                <p className="text-gray-700 mb-5 font-medium">{selectedLesson.objective}</p>
+                <p className="text-gray-300 mb-5 font-medium">{selectedLesson.objective}</p>
               )}
 
               {/* Video Player Placeholder */}
-              <div className="bg-gray-100 rounded-xl aspect-video flex items-center justify-center mb-5 relative border border-gray-200">
+              <div className="bg-gray-700 rounded-xl aspect-video flex items-center justify-center mb-5 relative border border-gray-600">
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-purple-700 transition shadow-lg">
+                  <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-700 transition shadow-lg">
                     <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
                     </svg>
                   </div>
                 </div>
-                <p className="text-gray-500 text-xs absolute bottom-3">Video player would be embedded here</p>
+                <p className="text-gray-400 text-xs absolute bottom-3">Video player would be embedded here</p>
               </div>
 
               {/* Complete Button */}
@@ -269,8 +270,8 @@ export default function ArtistExploreSection() {
                   completedLessons.has(selectedLesson.id)
                     ? 'bg-green-600 text-white cursor-not-allowed'
                     : isCompleting
-                    ? 'bg-gray-400 text-white cursor-not-allowed'
-                    : 'bg-purple-600 text-white hover:bg-purple-700 shadow-md'
+                    ? 'bg-gray-500 text-white cursor-not-allowed'
+                    : 'bg-blue-600 text-white hover:bg-blue-700 shadow-md'
                 }`}
               >
                 {completedLessons.has(selectedLesson.id)
@@ -283,6 +284,7 @@ export default function ArtistExploreSection() {
           </div>
         </div>
       )}
+      <Footer />
     </main>
   );
 }

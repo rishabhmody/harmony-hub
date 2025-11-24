@@ -2,101 +2,106 @@
 import React, { useEffect, useState } from "react";
 import Header from "@/app/header/page";
 import Footer from "../footer/page"
+
 interface User {
-  id: number;
+  _id: string;
   name: string;
-  books: number;
+  email: string;
   xp: number;
+  gigsPlayed: number;
+  role: string;
 }
 
 export default function LeaderboardPage() {
   const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8080");
-
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-
-      if (data.type === "leaderboard-update") {
-        setUsers(data.leaderboard);
+    const fetchLeaderboard = async () => {
+      try {
+        const response = await fetch('/api/leaderboard');
+        const data = await response.json();
+        if (data.users) {
+          setUsers(data.users);
+        }
+      } catch (error) {
+        console.error('Error fetching leaderboard:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
-    return () => ws.close();
+    fetchLeaderboard();
   }, []);
 
   return (
-    <div>
-    
-    <div className="w-full min-h-screen flex flex-col items-center bg-white py-12">
+    <div className="min-h-screen bg-gray-900 text-white">
+      <Header />
+      <div className="w-full flex flex-col items-center py-12">
 
       {/* Header */}
       <h1 className="text-5xl font-semibold tracking-wide mb-2">
-        leaderboard!
+        Leaderboard
       </h1>
 
-      <p className="text-gray-600 text-lg mb-10 text-center">
-        See our top readers! Every book you finish brings you closer to the top —
-        this leaderboard updates in real time.
+      <p className="text-gray-400 text-lg mb-10 text-center">
+        See our top artists and venues! Every lesson or gig brings you closer to the top.
       </p>
 
       {/* Layout: Leaderboard Left — Image Right */}
       <div className="flex gap-10 items-start">
 
         {/* 📌 LEFT: Leaderboard */}
-        <div className="bg-[#fffdd0] w-[480px] rounded-3xl shadow-xl px-8 py-6 border border-gray-300">
-          <h2 className="text-3xl font-semibold text-center mb-6">top readers</h2>
+        <div className="bg-gray-800 w-[480px] rounded-3xl shadow-xl px-8 py-6 border border-gray-700">
+          <h2 className="text-3xl font-semibold text-center mb-6">Top Artists & Venues</h2>
 
           <div className="flex flex-col gap-4">
-            {users.length === 0 && (
+            {loading ? (
               <p className="text-center text-gray-500">Loading leaderboard...</p>
-            )}
+            ) : users.length === 0 ? (
+              <p className="text-center text-gray-500">No users found</p>
+            ) : (
+              users.map((user, index) => (
+                <div
+                  key={user._id}
+                  className="flex items-center justify-between bg-gray-700 rounded-2xl px-5 py-4 shadow-sm border border-gray-600"
+                >
+                  <div className="flex items-center gap-4">
+                    <span className="text-xl font-medium w-6">{index + 1}.</span>
 
-            {users.map((user, index) => (
-              <div
-                key={user.id}
-                className="flex items-center justify-between bg-white rounded-2xl px-5 py-4 shadow-sm border border-gray-200"
-              >
-                <div className="flex items-center gap-4">
-                  <span className="text-xl font-medium w-6">{index + 1}.</span>
+                    <div className="w-12 h-12 rounded-full border bg-gray-600 flex items-center justify-center">
+                      <span className="text-xl">{user.role === 'venue' ? '🎭' : '🎸'}</span>
+                    </div>
 
-                  <img
-                    src={`/avatars/user${index + 1}.png`}
-                    className="w-12 h-12 rounded-full border"
-                    alt="avatar"
-                  />
+                    <div>
+                      <p className="text-lg font-medium">{user.name}</p>
+                      <p className="text-sm text-gray-400">
+                        {user.role === 'venue' ? 'Venue' : 'Artist'} • {user.gigsPlayed || 0} gigs
+                      </p>
+                    </div>
+                  </div>
 
-                  <div>
-                    <p className="text-lg font-medium">{user.name}</p>
-                    <p className="text-sm text-gray-500">
-                      {user.books} books read
+                  <div className="text-right">
+                    <p className="text-lg font-bold text-green-400">
+                      {user.xp.toLocaleString()}
                     </p>
+                    <p className="text-sm text-gray-400">XP</p>
                   </div>
                 </div>
-
-                <div className="text-right">
-                  <p className="text-lg font-bold">
-                    {user.xp.toLocaleString()}
-                  </p>
-                  <p className="text-sm text-gray-500">XP</p>
-                </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
 
         {/* 📌 RIGHT: Image */}
         <img
-          src="/images/leaderboard-right.png"
+          src="/leaderboard_icon.png"
           alt="Leaderboard Graphic"
           className="w-[320px] h-[420px] object-cover rounded-3xl shadow-md"
         />
       </div>
     </div>
-    
+      <Footer />
     </div>
   );
 }
-
-

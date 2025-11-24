@@ -2,12 +2,12 @@
 import Image from "next/image";
 import { useState } from "react";
 import Header from "@/app/header/page";
-import Footer from "@/app/footer/page"
+import Footer from "@/app/footer/page";
 
 export default function ExploreArtistsVenuesCurator() {
   const [selectedFilter, setSelectedFilter] = useState("All");
 
-  const filters = ["All", "Mystery", "Fantasy", "Thriller"];
+  const filters = ["All", "Rock", "Pop", "Jazz", "Electronic", "Hip-Hop"];
 
   const listings = Array(9).fill({
     title: "Local Jazz Night",
@@ -17,33 +17,32 @@ export default function ExploreArtistsVenuesCurator() {
   });
 
   return (
-    <div className="min-h-screen bg-white text-black font-[Poppins]">
+    <div className="min-h-screen bg-gray-900 text-white font-[Poppins]">
       <Header />
-
       {/* PAGE HEADER */}
       <div className="flex justify-between items-start px-10 mt-10">
         <div>
-          <h1 className="text-3xl font-bold">Learning Centre</h1>
-          <p className="text-sm text-gray-600">Discover and promote talent for the community.</p>
+          <h1 className="text-3xl font-bold">Explore</h1>
+          <p className="text-sm text-gray-400">Discover and promote talent for the community.</p>
         </div>
 
         <Image
-          src="/curator_books.png"
-          alt="Curator Illustration"
-          width={190}
-          height={190}
+          src="/explore_icon.png"
+          alt="Explore Illustration"
+          width={150}
+          height={150}
           className="object-contain"
         />
       </div>
 
       {/* SEARCH BAR */}
       <div className="px-10 mt-6">
-        <div className="flex items-center space-x-2 border px-4 py-2 rounded-full shadow-sm">
+        <div className="flex items-center space-x-2 border border-gray-700 px-4 py-2 rounded-full shadow-sm bg-gray-800">
           <span className="text-gray-500">🔍</span>
           <input
             type="text"
             placeholder="Search for artists, venues, genres"
-            className="w-full outline-none text-sm"
+            className="w-full outline-none text-sm bg-transparent"
           />
         </div>
       </div>
@@ -56,8 +55,8 @@ export default function ExploreArtistsVenuesCurator() {
             onClick={() => setSelectedFilter(filter)}
             className={`px-4 py-1 rounded-full border text-sm transition ${
               selectedFilter === filter
-                ? "bg-black text-white"
-                : "hover:bg-gray-200"
+                ? "bg-blue-500 text-white border-blue-500"
+                : "border-gray-700 hover:bg-gray-800"
             }`}
           >
             {filter}
@@ -65,12 +64,12 @@ export default function ExploreArtistsVenuesCurator() {
         ))}
       </div>
 
-      {/* BOOK GRID */}
+      {/* LISTING GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-10 mt-10 pb-20">
         {listings.map((listing, index) => (
           <div
             key={index}
-            className="border rounded-2xl p-4 shadow-sm hover:shadow-md transition"
+            className="border border-gray-700 rounded-2xl p-4 shadow-lg hover:shadow-blue-500/50 transition bg-gray-800"
           >
             <Image
               src={listing.image}
@@ -81,10 +80,10 @@ export default function ExploreArtistsVenuesCurator() {
             />
 
             <h3 className="mt-4 font-semibold text-lg">{listing.title}</h3>
-            <p className="text-sm text-gray-700">{listing.artist}</p>
+            <p className="text-sm text-gray-400">{listing.artist}</p>
             <p className="text-xs text-gray-500">{listing.genre}</p>
 
-            <button className="mt-4 w-full px-4 py-2 bg-black text-white rounded-full text-sm hover:opacity-80 transition">
+            <button className="mt-4 w-full px-4 py-2 bg-blue-500 text-white rounded-full text-sm hover:bg-blue-600 transition">
               View Listing →
             </button>
           </div>
@@ -92,10 +91,6 @@ export default function ExploreArtistsVenuesCurator() {
       </div>
 
       <Footer />
-
-      <div className="text-center text-xs py-4 text-gray-500">
-        © 2025 Harmony Hub. Made with love for artists everywhere.
-      </div>
     </div>
   );
 }

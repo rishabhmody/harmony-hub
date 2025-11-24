@@ -2,29 +2,27 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import Footer from "@/app/footer/page"
 import Header from "@/app/header/page";
+import Footer from "@/app/footer/page";
 
 export default function VenueDashboard() {
   return (
-    <main className="min-h-screen bg-white font-sans">
-
+    <main className="min-h-screen bg-gray-900 text-white font-sans">
       <Header />
-
       {/* HEADER */}
       <section className="px-16 py-10 flex justify-between items-start">
         <div>
           <h1 className="text-4xl font-mono mb-2">Venue Dashboard</h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-400 text-lg">
             Welcome back! Your stage shapes the community.
           </p>
         </div>
 
         <Image
-          src="/snoopy.png"
-          alt="Snoopy"
-          width={180}
-          height={180}
+          src="/Gemini_Generated_Image_4fisvt4fisvt4fis.png"
+          alt="Venue Icon"
+          width={300}
+          height={500}
           className="object-contain"
         />
       </section>
@@ -36,17 +34,17 @@ export default function VenueDashboard() {
         <div className="flex gap-20 text-center">
           <div>
             <h3 className="text-4xl font-semibold">45</h3>
-            <p className="text-gray-600 mt-1">Gigs Hosted</p>
+            <p className="text-gray-400 mt-1">Gigs Hosted</p>
           </div>
 
           <div>
             <h3 className="text-4xl font-semibold">25</h3>
-            <p className="text-gray-600 mt-1">Events Created</p>
+            <p className="text-gray-400 mt-1">Events Created</p>
           </div>
 
           <div>
             <h3 className="text-4xl font-semibold">5K+</h3>
-            <p className="text-gray-600 mt-1">Followers</p>
+            <p className="text-gray-400 mt-1">Followers</p>
           </div>
         </div>
       </section>
@@ -57,32 +55,51 @@ export default function VenueDashboard() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
 
-          {[1, 2, 3].map((num) => (
-            <div
-              key={num}
-              className="border p-4 rounded-2xl shadow-sm hover:shadow-lg transition"
-            >
-              <Image
-                src="/placeholder_gig.jpg" // Assuming a generic placeholder for now
-                alt="Event Poster"
-                width={300}
-                height={300}
-                className="rounded-xl mb-4"
-              />
+  {[
+    {
+      img: "/pop band.png",
+      title: "Rock Night Extravaganza",
+      venue: "The Thunder Arena",
+      genre: "Pop / Rock",
+    },
+    {
+      img: "/R&B band.png",
+      title: "Stand-Up Comedy Special",
+      venue: "Laugh Lounge",
+      genre: "R&B / Soul",
+    },
+    {
+      img: "/rap band.png",
+      title: "EDM Festival Blast",
+      venue: "Neon Dome",
+      genre: "Rap / Hip-Hop",
+    },
+  ].map((event, index) => (
+    <div
+      key={index}
+      className="border border-gray-700 p-4 rounded-2xl shadow-lg hover:shadow-blue-500/50 transition bg-gray-800"
+    >
+      <Image
+        src={event.img}
+        alt={event.title}
+        width={400}
+        height={500}
+        className="rounded-xl mb-4"
+      />
 
-              <h3 className="text-xl font-medium">Local Band Showcase</h3>
-              <p className="text-gray-700">The Live Venue</p>
-              <p className="text-gray-500 text-sm">Rock / Pop</p>
+      <h3 className="text-xl font-medium">{event.title}</h3>
+      <p className="text-gray-400">{event.venue}</p>
+      <p className="text-gray-500 text-sm">{event.genre}</p>
 
-              <button className="mt-4 w-full py-2 bg-black text-white rounded-full hover:opacity-90">
-                View event →
-              </button>
-            </div>
-          ))}
+      <button className="mt-4 w-full py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition">
+        View event →
+      </button>
+    </div>
+  ))}
 
-        </div>
+</div>
+
       </section>
-
       <Footer />
     </main>
   );

@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Header from "@/app/header/page";
 
 interface User {
   _id: string;
@@ -34,16 +33,15 @@ export default function LeaderboardPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <div className="w-full flex flex-col items-center bg-white py-12">
+    <div className="min-h-screen bg-gray-900 text-white">
+      <div className="w-full flex flex-col items-center py-12">
 
       {/* Header */}
       <h1 className="text-5xl font-semibold tracking-wide mb-2">
-        leaderboard!
+        Leaderboard
       </h1>
 
-      <p className="text-gray-600 text-lg mb-10 text-center">
+      <p className="text-gray-400 text-lg mb-10 text-center">
         See our top artists and venues! Every lesson or gig brings you closer to the top.
       </p>
 
@@ -51,7 +49,7 @@ export default function LeaderboardPage() {
       <div className="flex gap-10 items-start">
 
         {/* 📌 LEFT: Leaderboard */}
-        <div className="bg-[#fffdd0] w-[480px] rounded-3xl shadow-xl px-8 py-6 border border-gray-300">
+        <div className="bg-gray-800 w-[480px] rounded-3xl shadow-xl px-8 py-6 border border-gray-700">
           <h2 className="text-3xl font-semibold text-center mb-6">Top Artists & Venues</h2>
 
           <div className="flex flex-col gap-4">
@@ -63,28 +61,28 @@ export default function LeaderboardPage() {
               users.map((user, index) => (
                 <div
                   key={user._id}
-                  className="flex items-center justify-between bg-white rounded-2xl px-5 py-4 shadow-sm border border-gray-200"
+                  className="flex items-center justify-between bg-gray-700 rounded-2xl px-5 py-4 shadow-sm border border-gray-600"
                 >
                   <div className="flex items-center gap-4">
                     <span className="text-xl font-medium w-6">{index + 1}.</span>
 
-                    <div className="w-12 h-12 rounded-full border bg-gray-200 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full border bg-gray-600 flex items-center justify-center">
                       <span className="text-xl">{user.role === 'venue' ? '🎭' : '🎸'}</span>
                     </div>
 
                     <div>
                       <p className="text-lg font-medium">{user.name}</p>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm text-gray-400">
                         {user.role === 'venue' ? 'Venue' : 'Artist'} • {user.gigsPlayed || 0} gigs
                       </p>
                     </div>
                   </div>
 
                   <div className="text-right">
-                    <p className="text-lg font-bold">
+                    <p className="text-lg font-bold text-green-400">
                       {user.xp.toLocaleString()}
                     </p>
-                    <p className="text-sm text-gray-500">XP</p>
+                    <p className="text-sm text-gray-400">XP</p>
                   </div>
                 </div>
               ))
@@ -94,7 +92,7 @@ export default function LeaderboardPage() {
 
         {/* 📌 RIGHT: Image */}
         <img
-          src="/images/leaderboard-right.png"
+          src="/leaderboard_icon.png"
           alt="Leaderboard Graphic"
           className="w-[320px] h-[420px] object-cover rounded-3xl shadow-md"
         />
